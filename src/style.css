@@ -1,0 +1,75 @@
+:root {
+  --button-color: lightblue;
+  --shadow-color: 235deg 20% 60%;
+  --light-shadow:
+    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+    0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
+    0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
+  --medium-shadow: 
+    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
+    0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36),
+    0.1px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
+    0.1px 10px 11.3px -2.5px hsl(var(--shadow-color) / 0.36);
+}
+
+body {
+  background-color: #F0F1FC;
+  font-family: sans-serif;
+  color: #434343;
+  min-height: 100vh;
+  position: relative;
+}
+
+#header {
+  margin: 20px 20% 0px 20%;
+  padding: 20px;
+}
+
+#header h1 {
+  font-size: 2rem;
+}
+
+#wrapper {
+  background-color: white;
+  max-width: 800px;
+  margin: 0px auto;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: var(--medium-shadow);
+}
+
+#wrapper h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+#add-button {
+  cursor: pointer;
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  font-size: 2rem;
+  font-weight: 100;
+  border-radius: 100%;
+  border: none;
+  background-color: var(--button-color);
+  box-shadow: var(--light-shadow);
+  width: 50px;
+  height: 50px;
+  transition: box-shadow 100ms;
+}
+
+#add-button:hover {
+  box-shadow: var(--medium-shadow);
+  transition: box-shadow 100ms;
+}
+
+#copyright {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  font-size: 0.75rem;
+  color: var(--lightgrey);
+  bottom: 10px;
+}
