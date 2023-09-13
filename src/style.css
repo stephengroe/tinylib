@@ -1,6 +1,10 @@
 :root {
+  --background-color: #F0F1FC;
   --button-color: lightblue;
   --shadow-color: 235deg 20% 60%;
+
+  --border-radius: 5px;
+
   --light-shadow:
     0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
     0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
@@ -13,7 +17,7 @@
 }
 
 body {
-  background-color: #F0F1FC;
+  background-color: var(--background-color);
   font-family: sans-serif;
   color: #434343;
   min-height: 100vh;
@@ -21,8 +25,8 @@ body {
 }
 
 #header {
-  margin: 20px 20% 0px 20%;
-  padding: 20px;
+  margin: 1em 20% 0 20%;
+  padding: 2em;
 }
 
 #header h1 {
@@ -31,10 +35,10 @@ body {
 
 #wrapper {
   background-color: white;
-  max-width: 800px;
-  margin: 0px auto;
-  padding: 20px;
-  border-radius: 5px;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 3em;
+  border-radius: var(--border-radius);
   box-shadow: var(--medium-shadow);
 }
 
@@ -44,19 +48,51 @@ body {
   text-align: center;
 }
 
+.book-container {
+  padding: 1em;
+  box-shadow: var(--light-shadow);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius);
+  margin: 0 auto 1em auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4ch;
+}
+
+.book-container .book-image {
+  height: 6rem;
+  width: 4rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: var(--border-radius);
+  box-shadow: var(--light-shadow);
+}
+
+.book-container h3 {
+  font-size: 1.25rem;
+  font-weight: bold;
+  margin-bottom: 0.5em;
+}
+
+.book-container p {
+  color: grey;
+}
+
 #add-button {
   cursor: pointer;
   position: absolute;
-  bottom: 25px;
-  right: 25px;
+  bottom: 1rem;
+  right: 1rem;
   font-size: 2rem;
   font-weight: 100;
   border-radius: 100%;
   border: none;
   background-color: var(--button-color);
   box-shadow: var(--light-shadow);
-  width: 50px;
-  height: 50px;
+  width: 2em;
+  height: 2em;
   transition: box-shadow 100ms;
 }
 
@@ -71,5 +107,5 @@ body {
   width: 100%;
   font-size: 0.75rem;
   color: var(--lightgrey);
-  bottom: 10px;
+  bottom: 1rem;
 }

@@ -1,10 +1,8 @@
 import './meyer-reset.css';
 import './style.css';
-import Book from './book';
+import {Book, library} from './library';
 
-// Dummy content
-const ggs = new Book(9780393317558, 'Guns, Germs, and Steel', 'Jared Diamond');
-
+// Initial page render
 function renderPage() {
   const body = document.querySelector('body');
 
@@ -21,9 +19,9 @@ function renderPage() {
   wrapper.setAttribute('id', 'wrapper');
 
   const heading = document.createElement('h2');
-  heading.textContent = "my books";
+  heading.textContent = "My Books";
 
-  const bookList = generateBookList();
+  wrapper.append(heading, generateBookList(library));
 
   // Generate "add" button
   const addButton = document.createElement('button');
@@ -36,12 +34,38 @@ function renderPage() {
   copyright.textContent = `© ${new Date().getFullYear()} Stephen Roe`;
 
   // Append all elements
-  wrapper.append(heading, bookList);
   body.append(header, wrapper, addButton, copyright);
 }
 
-function generateBookList() {
-  return JSON.stringify(ggs);
+// Iterate through list of books
+function generateBookList(bookList) {
+  const libraryContainer = document.createElement('div');
+  libraryContainer.setAttribute('class', 'library-container');
+
+  bookList.forEach(book => {
+    const bookContainer = document.createElement('div');
+    bookContainer.setAttribute('class', 'book-container');
+
+    const bookImage = document.createElement('div');
+    bookImage.setAttribute('class', 'book-image');
+    bookImage.style.backgroundImage = `url(${book.imageUrl})`;
+
+    const bookData = document.createElement('div');
+
+    const bookTitle = document.createElement('h3');
+    bookTitle.setAttribute('class', 'book-title');
+    bookTitle.textContent = book.title;
+
+    const bookAuthor = document.createElement('p');
+    bookAuthor.setAttribute('class', 'book-author');
+    bookAuthor.textContent = book.author;
+
+    bookData.append(bookTitle, bookAuthor);
+    bookContainer.append(bookImage, bookData);
+    libraryContainer.append(bookContainer);
+  });
+  
+  return libraryContainer;
 }
 
 renderPage();
