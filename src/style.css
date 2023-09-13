@@ -82,7 +82,7 @@ body {
 
 #add-button {
   cursor: pointer;
-  position: absolute;
+  position: fixed;
   bottom: 1rem;
   right: 1rem;
   font-size: 2rem;

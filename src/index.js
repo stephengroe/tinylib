@@ -1,6 +1,6 @@
 import './meyer-reset.css';
 import './style.css';
-import {Book, library} from './library';
+import {Book, library, addBook} from './library';
 
 // Initial page render
 function renderPage() {
@@ -21,12 +21,24 @@ function renderPage() {
   const heading = document.createElement('h2');
   heading.textContent = "My Books";
 
-  wrapper.append(heading, generateBookList(library));
+  // Generate library container and fill it
+  const libraryContainer = document.createElement('div');
+  libraryContainer.setAttribute('class', 'library-container');
+  renderBookList(libraryContainer, library);
 
-  // Generate "add" button
+  wrapper.append(heading, libraryContainer);
+
+  // Generate and bind "add" button
   const addButton = document.createElement('button');
   addButton.setAttribute('id', 'add-button');
   addButton.textContent = '+';
+  addButton.addEventListener('click', () => {
+    addBook();
+    renderBookList(
+      document.querySelector('.library-container'),
+      library
+    );
+  });
 
   // Generate copyright footer
   const copyright = document.createElement("p");
@@ -37,10 +49,19 @@ function renderPage() {
   body.append(header, wrapper, addButton, copyright);
 }
 
+function renderBookList(container, bookList) {
+  // Clear existing content
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  const bookArray = generateBookList(bookList);
+  bookArray.forEach(book => container.append(book));
+}
+
 // Iterate through list of books
 function generateBookList(bookList) {
-  const libraryContainer = document.createElement('div');
-  libraryContainer.setAttribute('class', 'library-container');
+  const bookArray = [];
 
   bookList.forEach(book => {
     const bookContainer = document.createElement('div');
@@ -62,10 +83,10 @@ function generateBookList(bookList) {
 
     bookData.append(bookTitle, bookAuthor);
     bookContainer.append(bookImage, bookData);
-    libraryContainer.append(bookContainer);
+    bookArray.push(bookContainer);
   });
   
-  return libraryContainer;
+  return bookArray;
 }
 
 renderPage();
