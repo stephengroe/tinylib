@@ -4,6 +4,7 @@
   --shadow-color: 235deg 20% 60%;
 
   --border-radius: 5px;
+  --transition-time: 100ms;
 
   --light-shadow:
     0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
@@ -36,7 +37,7 @@ body {
 #wrapper {
   background-color: white;
   max-width: 700px;
-  margin: 0 auto;
+  margin: 0 auto 4em auto;
   padding: 3em;
   border-radius: var(--border-radius);
   box-shadow: var(--medium-shadow);
@@ -49,6 +50,7 @@ body {
 }
 
 .book-container {
+  cursor: pointer;
   padding: 1em;
   box-shadow: var(--light-shadow);
   background-color: var(--background-color);
@@ -59,6 +61,12 @@ body {
   justify-content: flex-start;
   align-items: center;
   gap: 4ch;
+  transition: box-shadow var(--transition-time);
+}
+
+.book-container:hover {
+  box-shadow: var(--medium-shadow);
+  transition: box-shadow var(--transition-time);
 }
 
 .book-container .book-image {
@@ -93,12 +101,12 @@ body {
   box-shadow: var(--light-shadow);
   width: 2em;
   height: 2em;
-  transition: box-shadow 100ms;
+  transition: box-shadow var(--transition-time);
 }
 
 #add-button:hover {
   box-shadow: var(--medium-shadow);
-  transition: box-shadow 100ms;
+  transition: box-shadow var(--transition-time);
 }
 
 #copyright {
