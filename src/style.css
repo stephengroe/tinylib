@@ -1,21 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500&family=Playfair+Display:wght@600&display=swap");
 
 :root {
   --site-color-primary: #744253;
-  --site-color-secondary: #173D3E;
-  --site-color-tertiary: #A799B7;
-  --site-background-color: #FFF5E0;
+  --site-color-secondary: #173d3e;
+  --site-color-tertiary: #a799b7;
+  --site-background-color: #fff5e0;
 
   --border-radius: 5px;
   --transition-time: 100ms;
 
   --shadow-color: 235deg 20% 60%;
-  --light-shadow:
-    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
+  --light-shadow: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.34),
     0px 0.8px 0.9px -1.2px hsl(var(--shadow-color) / 0.34),
     0px 2px 2.3px -2.5px hsl(var(--shadow-color) / 0.34);
-  --medium-shadow: 
-    0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
+  --medium-shadow: 0px 0.5px 0.6px hsl(var(--shadow-color) / 0.36),
     0px 1.6px 1.8px -0.8px hsl(var(--shadow-color) / 0.36),
     0.1px 4.1px 4.6px -1.7px hsl(var(--shadow-color) / 0.36),
     0.1px 10px 11.3px -2.5px hsl(var(--shadow-color) / 0.36);
@@ -25,14 +23,14 @@ body {
   background-color: white;
   min-height: 100vh;
   position: relative;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
 
 h1,
 h2,
 h3 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-weight: 600;
   color: var(--site-color-primary);
 }
