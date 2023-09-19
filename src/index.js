@@ -103,4 +103,18 @@ function generateModal() {
   return modal;
 }
 
-addBook(9780393317558).then(() => renderPage());
+// Initialization function
+async function initialize() {
+
+  // Load default data
+  const initData = [9780393317558, 9780743264730, 9780812979688, 9781501111112, 9780099541530];
+
+  for (let i=0; i<initData.length; i+=1) {
+    await addBook(initData[i]);
+
+  }
+
+  renderPage();
+}
+
+initialize();

@@ -30,13 +30,17 @@ body {
 }
 
 h1,
+h2 {
+  text-align: center;
+}
+
+h1,
 h2,
 h3 {
   font-family: "Playfair Display", serif;
   font-weight: 600;
   color: var(--site-color-primary);
   margin-bottom: 1em;
-  text-align: center;
 }
 
 h3,

@@ -23,8 +23,8 @@ async function addBook(isbn) {
     );
     let bookData = await response.json();
 
-    // Remove parent ISBN object returned by OpenLibrary API
-    bookData =  bookData[`ISBN:${isbn}`];
+    bookData =  bookData[`ISBN:${isbn}`]; // Remove parent 'ISBN:####' object
+    console.log(bookData);
     library.push(
       new Book({
         isbn,
@@ -36,6 +36,12 @@ async function addBook(isbn) {
   } catch (error) {
     console.error(error);
   }
+}
+
+// Delete book from library array
+function deleteBook(id) {
+  const index = library.flatMap(book => book.id).indexOf(id);
+  library.splice(index, 1);
 }
 
 // Generate array of book elements
@@ -83,11 +89,6 @@ function generateBookList(bookList) {
   });
 
   return bookArray;
-}
-
-function deleteBook(id) {
-  const index = library.flatMap(book => book.id).indexOf(id);
-  library.splice(index, 1);
 }
 
 export {library, Book, addBook, generateBookList};
