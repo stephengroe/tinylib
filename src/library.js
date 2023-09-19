@@ -11,7 +11,7 @@ class Book {
   }
 }
 
-// Create new book
+// Create new book from OpenLibrary API
 async function addBook(isbn) {
   try {
     const response = await fetch(
@@ -22,7 +22,7 @@ async function addBook(isbn) {
     );
     let bookData = await response.json();
 
-    // OpenLibrary API returns object nested inside of ISBN
+    // Remove parent ISBN object returned by OpenLibrary API
     bookData =  bookData[`ISBN:${isbn}`];
     library.push(
       new Book({
@@ -37,24 +37,7 @@ async function addBook(isbn) {
   }
 }
 
-
-// const principles = new Book(
-//   9781501124020,
-//   "Principles",
-//   "Ray Dalio",
-//   "https://m.media-amazon.com/images/I/41q+cPPAsgL._SY445_SX342_.jpg",
-// );
-
-// Dummy content
-const ggs = new Book({
-  isbn: 9780393317558,
-  title: "Guns, Germs, and Steel",
-  author: "Jared Diamond",
-  imageUrl: "https://m.media-amazon.com/images/I/51Psz1zS5ZL._AC_UF1000,1000_QL80_.jpg",
-});
-library.push(ggs);
-
-// Iterate through list of books
+// Generate array of book elements
 function generateBookList(bookList) {
   const bookArray = [];
 

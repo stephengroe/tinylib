@@ -1,6 +1,5 @@
 import "./meyer-reset.css";
 import "./style.css";
-// import config from "./config";
 import {library, addBook, generateBookList} from "./library";
 
 // Render book list
@@ -59,4 +58,4 @@ function renderPage() {
   body.append(header, wrapper, addButton, copyright);
 }
 
-renderPage();
+addBook(9780393317558).then(() => renderPage());
