@@ -108,11 +108,11 @@ async function initialize() {
 
   // Load default data
   const initData = [9780393317558, 9780743264730, 9780812979688, 9781501111112, 9780099541530];
-
+  const addBooks = [];
   for (let i=0; i<initData.length; i+=1) {
-    await addBook(initData[i]);
-
+    addBooks.push(addBook(initData[i]));
   }
+  await Promise.all(addBooks);
 
   renderPage();
 }

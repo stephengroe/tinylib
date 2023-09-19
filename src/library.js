@@ -24,7 +24,6 @@ async function addBook(isbn) {
     let bookData = await response.json();
 
     bookData =  bookData[`ISBN:${isbn}`]; // Remove parent 'ISBN:####' object
-    console.log(bookData);
     library.push(
       new Book({
         isbn,
