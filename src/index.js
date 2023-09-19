@@ -39,14 +39,13 @@ function renderPage() {
 
   wrapper.append(heading, libraryContainer);
 
-  // Generate and bind "add" button
-  const addButton = document.createElement("button");
-  addButton.setAttribute("id", "add-button");
-  addButton.textContent = "+";
-  addButton.addEventListener("click",
-    async () => {
-      await addBook(9780743264730);
-      renderBookList(document.querySelector(".library-container"), library)
+  // Generate and bind "+" button
+  const plusButton = document.createElement("button");
+  plusButton.setAttribute("id", "add-button");
+  plusButton.textContent = "+";
+  plusButton.addEventListener("click",
+    () => {
+      document.querySelector("#add-book-modal").showModal();
     });
 
   // Generate copyright footer
@@ -54,8 +53,54 @@ function renderPage() {
   copyright.setAttribute("id", "copyright");
   copyright.textContent = `© ${new Date().getFullYear()} Stephen Roe`;
 
+  // Generate modal
+  const modal = generateModal();
+
   // Append all elements
-  body.append(header, wrapper, addButton, copyright);
+  body.append(header, wrapper, modal, plusButton, copyright);
+}
+
+// Generate modal
+function generateModal() {
+  // Modal
+  const modal = document.createElement("dialog");
+  modal.setAttribute("id", "add-book-modal");
+
+  // Heading
+  const heading = document.createElement("h2");
+  heading.textContent = "Add to Library";
+
+  // Form
+  const form = document.createElement("form");
+
+  // ISBN input
+  const isbn = document.createElement("input");
+  isbn.setAttribute("type", "number");
+  isbn.setAttribute("name", "isbn");
+  isbn.setAttribute("id", "form-isbn");
+  isbn.setAttribute("value", "9780393317558");
+
+  const isbnLabel = document.createElement("label");
+  isbnLabel.setAttribute("for", "form-isbn");
+  isbnLabel.textContent = "ISBN";
+
+  // "Add" button
+  const addButton = document.createElement("button");
+  addButton.setAttribute("type", "submit");
+  addButton.textContent = "Add Book";
+
+  addButton.addEventListener("click",
+  async (event) => {
+    event.preventDefault();
+    await addBook(event.currentTarget.form.isbn.value);
+    renderBookList(document.querySelector(".library-container"), library);
+    document.querySelector("#add-book-modal").close();
+  });
+
+  form.append(isbnLabel, isbn, addButton);
+
+  modal.append(heading, form);
+  return modal;
 }
 
 addBook(9780393317558).then(() => renderPage());

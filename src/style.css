@@ -35,6 +35,8 @@ h3 {
   font-family: "Playfair Display", serif;
   font-weight: 600;
   color: var(--site-color-primary);
+  margin-bottom: 1em;
+  text-align: center;
 }
 
 h3,
@@ -44,6 +46,13 @@ h6 {
   color: var(--site-color-secondary);
 }
 
+h1 { font-size: 2.5rem; }
+h2 { font-size: 1.75rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+h5 { font-size: 1rem; }
+h6 { font-size: .75rem; }
+
 #header {
   margin: 0;
   padding: 1rem;
@@ -52,12 +61,6 @@ h6 {
 #wrapper {
   max-width: 700px;
   margin: 0 auto 4em auto;
-}
-
-h1 {
-  font-size: 2.5rem;
-  margin-bottom: 1em;
-  text-align: center;
 }
 
 .book-container {
@@ -73,6 +76,7 @@ h1 {
   align-items: center;
   gap: 4ch;
   transition: box-shadow var(--transition-time);
+  text-align: left;
 }
 
 .book-container:hover {
@@ -118,6 +122,18 @@ h1 {
 #add-button:hover {
   box-shadow: var(--medium-shadow);
   transition: box-shadow var(--transition-time);
+}
+
+#add-book-modal {
+  border: 1px solid var(--site-color-tertiary);
+  min-width: 300px;
+  border-radius: var(--border-radius);
+}
+
+#add-book-modal::backdrop {
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  background-color: rgba(255, 255, 255, 0.25);
 }
 
 #copyright {
