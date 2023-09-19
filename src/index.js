@@ -1,5 +1,6 @@
 import "./meyer-reset.css";
 import "./style.css";
+import config from "./config";
 import * as library from "./library";
 
 // Render book list
