@@ -1,7 +1,7 @@
 import "./meyer-reset.css";
 import "./style.css";
-import config from "./config";
-import * as library from "./library";
+// import config from "./config";
+import {library, addBook, generateBookList} from "./library";
 
 // Render book list
 function renderBookList(container, bookList) {
@@ -10,7 +10,7 @@ function renderBookList(container, bookList) {
     container.removeChild(container.firstChild);
   }
 
-  const bookArray = library.generateBookList(bookList);
+  const bookArray = generateBookList(bookList);
   bookArray.forEach((book) => container.append(book));
 }
 
@@ -44,10 +44,11 @@ function renderPage() {
   const addButton = document.createElement("button");
   addButton.setAttribute("id", "add-button");
   addButton.textContent = "+";
-  addButton.addEventListener("click", () => {
-    library.addBook();
-    renderBookList(document.querySelector(".library-container"), library);
-  });
+  addButton.addEventListener("click",
+    async () => {
+      await addBook(9780743264730);
+      renderBookList(document.querySelector(".library-container"), library)
+    });
 
   // Generate copyright footer
   const copyright = document.createElement("p");

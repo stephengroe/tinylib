@@ -3,32 +3,55 @@ const library = [];
 
 // Book class definition
 class Book {
-  constructor(isbn, title, author, imageUrl) {
-    this.isbn = isbn;
-    this.title = title;
-    this.author = author;
-    this.imageUrl = imageUrl;
+  constructor(details) {
+    this.isbn = details.isbn;
+    this.title = details.title;
+    this.author = details.author;
+    this.imageUrl = details.imageUrl || "https://dummyimage.com/80x120/000000/fff&text=+cover+";
   }
 }
 
 // Create new book
-function addBook() {
-  const principles = new Book(
-    9781501124020,
-    "Principles",
-    "Ray Dalio",
-    "https://m.media-amazon.com/images/I/41q+cPPAsgL._SY445_SX342_.jpg",
-  );
-  library.push(principles);
+async function addBook(isbn) {
+  try {
+    const response = await fetch(
+      `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`,
+       {
+        mode: 'cors'
+       }
+    );
+    let bookData = await response.json();
+
+    // OpenLibrary API returns object nested inside of ISBN
+    bookData =  bookData[`ISBN:${isbn}`];
+    library.push(
+      new Book({
+        isbn,
+        title: bookData.title,
+        author: bookData.authors[0].name,
+        imageUrl: bookData.cover.medium,
+      })
+    );
+  } catch (error) {
+    console.error(error);
+  }
 }
 
+
+// const principles = new Book(
+//   9781501124020,
+//   "Principles",
+//   "Ray Dalio",
+//   "https://m.media-amazon.com/images/I/41q+cPPAsgL._SY445_SX342_.jpg",
+// );
+
 // Dummy content
-const ggs = new Book(
-  9780393317558,
-  "Guns, Germs, and Steel",
-  "Jared Diamond",
-  "https://m.media-amazon.com/images/I/51Psz1zS5ZL._AC_UF1000,1000_QL80_.jpg",
-);
+const ggs = new Book({
+  isbn: 9780393317558,
+  title: "Guns, Germs, and Steel",
+  author: "Jared Diamond",
+  imageUrl: "https://m.media-amazon.com/images/I/51Psz1zS5ZL._AC_UF1000,1000_QL80_.jpg",
+});
 library.push(ggs);
 
 // Iterate through list of books
