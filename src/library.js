@@ -8,6 +8,7 @@ class Book {
     this.title = details.title;
     this.author = details.author;
     this.imageUrl = details.imageUrl || "https://dummyimage.com/80x120/000000/fff&text=+cover+";
+    this.id = Date.now(); // Generate unique ID from timestamp
   }
 }
 
@@ -42,15 +43,17 @@ function generateBookList(bookList) {
   const bookArray = [];
 
   bookList.forEach((book) => {
+    // Book container
     const bookContainer = document.createElement("div");
     bookContainer.setAttribute("class", "book-container");
+    bookContainer.dataset.bookId = book.id;
 
+    // Cover image
     const bookImage = document.createElement("div");
     bookImage.setAttribute("class", "book-image");
     bookImage.style.backgroundImage = `url(${book.imageUrl})`;
 
-    const bookData = document.createElement("div");
-
+    // Title and author
     const bookTitle = document.createElement("h3");
     bookTitle.setAttribute("class", "book-title");
     bookTitle.textContent = book.title;
@@ -59,12 +62,32 @@ function generateBookList(bookList) {
     bookAuthor.setAttribute("class", "book-author");
     bookAuthor.textContent = book.author;
 
+    const bookData = document.createElement("div");
     bookData.append(bookTitle, bookAuthor);
-    bookContainer.append(bookImage, bookData);
+
+    // Delete button
+    const deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "delete-button");
+    deleteButton.textContent = "X";
+
+    deleteButton.addEventListener("click", event => {
+      event.preventDefault();
+      deleteBook(book.id);
+      const node = document.querySelector(`[data-book-id='${book.id}']`);
+      node.parentNode.removeChild(node);
+    });
+
+    // Put it all together
+    bookContainer.append(bookImage, bookData, deleteButton);
     bookArray.push(bookContainer);
   });
 
   return bookArray;
+}
+
+function deleteBook(id) {
+  const index = library.flatMap(book => book.id).indexOf(id);
+  library.splice(index, 1);
 }
 
 export {library, Book, addBook, generateBookList};

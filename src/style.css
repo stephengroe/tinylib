@@ -53,6 +53,17 @@ h4 { font-size: 1.25rem; }
 h5 { font-size: 1rem; }
 h6 { font-size: .75rem; }
 
+button {
+  cursor: pointer;
+  box-shadow: var(--light-shadow);
+  transition: box-shadow var(--transition-time);
+}
+
+button:hover {
+  box-shadow: var(--medium-shadow);
+  transition: box-shadow var(--transition-time);
+}
+
 #header {
   margin: 0;
   padding: 1rem;
@@ -102,26 +113,37 @@ h6 { font-size: .75rem; }
   color: var(--site-color-tertiary);
 }
 
-#add-button {
+.book-container {
+  position: relative;
+}
+
+.book-container .delete-button {
+  display: none;
   cursor: pointer;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
-  font-size: 2rem;
+  position: absolute;
+  top: 1em;
+  right: 1em;
+}
+
+.book-container:hover .delete-button {
+  display: block;
+}
+
+#add-button, .delete-button {
+  width: 2em;
+  height: 2em;
   font-weight: 100;
   border-radius: 100%;
   border: none;
   background-color: var(--site-color-secondary);
   color: white;
-  box-shadow: var(--light-shadow);
-  width: 2em;
-  height: 2em;
-  transition: box-shadow var(--transition-time);
 }
 
-#add-button:hover {
-  box-shadow: var(--medium-shadow);
-  transition: box-shadow var(--transition-time);
+#add-button {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: 2rem;
 }
 
 #add-book-modal {
