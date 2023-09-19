@@ -21,7 +21,7 @@ function renderPage() {
   const header = document.createElement("div");
   header.setAttribute("id", "header");
 
-  const title = document.createElement("h1");
+  const title = document.createElement("p");
   title.textContent = "TinyLib";
   header.append(title);
 
@@ -29,8 +29,8 @@ function renderPage() {
   const wrapper = document.createElement("div");
   wrapper.setAttribute("id", "wrapper");
 
-  const heading = document.createElement("h2");
-  heading.textContent = "My Books";
+  const heading = document.createElement("h1");
+  heading.textContent = "My Library";
 
   // Generate library container and fill it
   const libraryContainer = document.createElement("div");
