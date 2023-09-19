@@ -1,6 +1,17 @@
 import "./meyer-reset.css";
 import "./style.css";
-import { Book, library, addBook } from "./library";
+import * as library from "./library";
+
+// Render book list
+function renderBookList(container, bookList) {
+  // Clear existing content
+  while (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
+  const bookArray = library.generateBookList(bookList);
+  bookArray.forEach((book) => container.append(book));
+}
 
 // Initial page render
 function renderPage() {
@@ -33,7 +44,7 @@ function renderPage() {
   addButton.setAttribute("id", "add-button");
   addButton.textContent = "+";
   addButton.addEventListener("click", () => {
-    addBook();
+    library.addBook();
     renderBookList(document.querySelector(".library-container"), library);
   });
 
@@ -44,46 +55,6 @@ function renderPage() {
 
   // Append all elements
   body.append(header, wrapper, addButton, copyright);
-}
-
-function renderBookList(container, bookList) {
-  // Clear existing content
-  while (container.firstChild) {
-    container.removeChild(container.firstChild);
-  }
-
-  const bookArray = generateBookList(bookList);
-  bookArray.forEach((book) => container.append(book));
-}
-
-// Iterate through list of books
-function generateBookList(bookList) {
-  const bookArray = [];
-
-  bookList.forEach((book) => {
-    const bookContainer = document.createElement("div");
-    bookContainer.setAttribute("class", "book-container");
-
-    const bookImage = document.createElement("div");
-    bookImage.setAttribute("class", "book-image");
-    bookImage.style.backgroundImage = `url(${book.imageUrl})`;
-
-    const bookData = document.createElement("div");
-
-    const bookTitle = document.createElement("h3");
-    bookTitle.setAttribute("class", "book-title");
-    bookTitle.textContent = book.title;
-
-    const bookAuthor = document.createElement("p");
-    bookAuthor.setAttribute("class", "book-author");
-    bookAuthor.textContent = book.author;
-
-    bookData.append(bookTitle, bookAuthor);
-    bookContainer.append(bookImage, bookData);
-    bookArray.push(bookContainer);
-  });
-
-  return bookArray;
 }
 
 renderPage();
