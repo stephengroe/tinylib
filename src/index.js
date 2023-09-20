@@ -1,7 +1,7 @@
 import "./meyer-reset.css";
 import "./style.css";
 import {library, addBook, generateBookList} from "./library";
-import isValidIsbn from "./isbn";
+import{formatIsbn, isValidIsbn} from "./isbn";
 
 // Render book list
 function renderBookList(container, bookList) {
@@ -12,6 +12,55 @@ function renderBookList(container, bookList) {
 
   const bookArray = generateBookList(bookList);
   bookArray.forEach((book) => container.append(book));
+}
+
+
+// Generate modal
+function generateModal() {
+  // Modal
+  const modal = document.createElement("dialog");
+  modal.setAttribute("id", "add-book-modal");
+
+  // Heading
+  const heading = document.createElement("h2");
+  heading.textContent = "Add to Library";
+
+  // Form
+  const form = document.createElement("form");
+
+  // ISBN input
+  const isbn = document.createElement("input");
+  isbn.setAttribute("type", "text");
+  isbn.setAttribute("name", "isbn");
+  isbn.setAttribute("id", "form-isbn");
+  isbn.setAttribute("value", "9781501111112");
+
+  const isbnLabel = document.createElement("label");
+  isbnLabel.setAttribute("for", "form-isbn");
+  isbnLabel.textContent = "ISBN";
+
+  // "Add" button
+  const addButton = document.createElement("button");
+  addButton.setAttribute("type", "submit");
+  addButton.textContent = "Add Book";
+
+  addButton.addEventListener("click",
+  async (event) => {
+    event.preventDefault();
+    const enteredIsbn = event.currentTarget.form.isbn.value;
+    if (isValidIsbn(enteredIsbn)) {
+      await addBook(formatIsbn(enteredIsbn));
+      renderBookList(document.querySelector(".library-container"), library);
+      document.querySelector("#add-book-modal").close();
+    } else {
+      alert("Invalid ISBN!");
+    }
+  });
+
+  form.append(isbnLabel, isbn, addButton);
+
+  modal.append(heading, form);
+  return modal;
 }
 
 // Initial page render
@@ -59,55 +108,6 @@ function renderPage() {
 
   // Append all elements
   body.append(header, wrapper, modal, plusButton, copyright);
-}
-
-// Generate modal
-function generateModal() {
-  // Modal
-  const modal = document.createElement("dialog");
-  modal.setAttribute("id", "add-book-modal");
-
-  // Heading
-  const heading = document.createElement("h2");
-  heading.textContent = "Add to Library";
-
-  // Form
-  const form = document.createElement("form");
-
-  // ISBN input
-  const isbn = document.createElement("input");
-  isbn.setAttribute("type", "text");
-  isbn.setAttribute("name", "isbn");
-  isbn.setAttribute("id", "form-isbn");
-  isbn.setAttribute("value", "0-486-29823-x");
-
-  const isbnLabel = document.createElement("label");
-  isbnLabel.setAttribute("for", "form-isbn");
-  isbnLabel.textContent = "ISBN";
-
-  // "Add" button
-  const addButton = document.createElement("button");
-  addButton.setAttribute("type", "submit");
-  addButton.textContent = "Add Book";
-
-  addButton.addEventListener("click",
-  async (event) => {
-    event.preventDefault();
-    const enteredIsbn = event.currentTarget.form.isbn.value;
-
-    if (isValidIsbn(enteredIsbn)) {
-      await addBook(enteredIsbn.toUpperCase());
-      renderBookList(document.querySelector(".library-container"), library);
-      document.querySelector("#add-book-modal").close();
-    } else {
-      alert("Invalid ISBN!");
-    }
-  });
-
-  form.append(isbnLabel, isbn, addButton);
-
-  modal.append(heading, form);
-  return modal;
 }
 
 // Initialization function
