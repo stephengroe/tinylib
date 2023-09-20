@@ -78,6 +78,13 @@ button:hover {
   margin: 0 auto 4em auto;
 }
 
+.empty-placeholder {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .book-container {
   background-color: var(--site-background-color);
   cursor: pointer;

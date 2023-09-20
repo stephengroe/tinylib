@@ -11,7 +11,17 @@ function renderBookList(container, bookList) {
   }
 
   const bookArray = generateBookList(bookList);
-  bookArray.forEach((book) => container.append(book));
+
+  // Placeholder for empty library
+  if (bookList.length === 0) {
+    const emptyPlaceholder = document.createElement("div");
+    emptyPlaceholder.setAttribute("class", "empty-placeholder");
+    emptyPlaceholder.textContent = "No books here!";
+
+    container.append(emptyPlaceholder);
+  } else {
+    bookArray.forEach((book) => container.append(book));
+  }
 }
 
 
