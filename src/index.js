@@ -1,6 +1,7 @@
 import "./meyer-reset.css";
 import "./style.css";
 import {library, addBook, generateBookList} from "./library";
+import isValidIsbn from "./isbn";
 
 // Render book list
 function renderBookList(container, bookList) {
@@ -75,10 +76,10 @@ function generateModal() {
 
   // ISBN input
   const isbn = document.createElement("input");
-  isbn.setAttribute("type", "number");
+  isbn.setAttribute("type", "text");
   isbn.setAttribute("name", "isbn");
   isbn.setAttribute("id", "form-isbn");
-  isbn.setAttribute("value", "9780393317558");
+  isbn.setAttribute("value", "0-486-29823-x");
 
   const isbnLabel = document.createElement("label");
   isbnLabel.setAttribute("for", "form-isbn");
@@ -92,9 +93,15 @@ function generateModal() {
   addButton.addEventListener("click",
   async (event) => {
     event.preventDefault();
-    await addBook(event.currentTarget.form.isbn.value);
-    renderBookList(document.querySelector(".library-container"), library);
-    document.querySelector("#add-book-modal").close();
+    const enteredIsbn = event.currentTarget.form.isbn.value;
+
+    if (isValidIsbn(enteredIsbn)) {
+      await addBook(enteredIsbn.toUpperCase());
+      renderBookList(document.querySelector(".library-container"), library);
+      document.querySelector("#add-book-modal").close();
+    } else {
+      alert("Invalid ISBN!");
+    }
   });
 
   form.append(isbnLabel, isbn, addButton);
