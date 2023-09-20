@@ -52,21 +52,18 @@ function generateModal() {
 
   addButton.addEventListener("click",
   async (event) => {
-    console.log(event);
     event.preventDefault();
-
     const eventIsbnInput = event.currentTarget.form.isbn;
     const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
     const enteredIsbn = event.currentTarget.form.isbn.value;
 
     if (!isValidIsbn(enteredIsbn)) {
-      
       eventIsbnInput.classList.add("invalid");
       eventIsbnError.classList.add("active");
       eventIsbnError.textContent = "Invalid ISBN";
 
     } else {
-      eventIsbnInput.classList.add("valid");
+      eventIsbnInput.classList.remove("invalid");
       eventIsbnError.classList.remove("active");
 
       await addBook(formatIsbn(enteredIsbn));

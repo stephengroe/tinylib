@@ -179,7 +179,7 @@ label {
   margin: 1em;
 }
 
-label input, label input:focus, label input.valid {
+label input, label input:focus {
   background-color: white;
 
   font-size: 1.5rem;
@@ -190,9 +190,32 @@ label input, label input:focus, label input.valid {
   outline: none;
 }
 
-label input.invalid {
+label input.invalid, label input.invalid:focus {
   background-color: #ffdada;
+  animation: shake 150ms;
 }
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  13% {
+    transform: translate(3px, 0);
+  }
+  38% {
+    transform: translate(-3px, 0);
+  }
+  63% {
+    transform: translate(3px, 0);
+  }
+  87% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
 
 label .error {
   background-color: red;
