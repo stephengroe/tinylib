@@ -1,7 +1,7 @@
 import "./meyer-reset.css";
 import "./style.css";
 import {library, addBook, generateBookList} from "./library";
-import{formatIsbn, isValidIsbn} from "./isbn";
+import {formatIsbn, isValidIsbn} from "./isbn";
 
 // Render book list
 function renderBookList(container, bookList) {
@@ -37,7 +37,7 @@ function generateModal() {
   isbnInput.setAttribute("type", "text");
   isbnInput.setAttribute("name", "isbn");
   isbnInput.setAttribute("id", "form-isbn");
-  isbnInput.setAttribute("value", "9781501111112");
+  isbnInput.setAttribute("value", "9780812979688");
 
   const isbnError = document.createElement("span");
   isbnError.setAttribute("aria-live", "polite");
@@ -100,8 +100,6 @@ function renderPage() {
   // Generate library container and fill it
   const libraryContainer = document.createElement("div");
   libraryContainer.setAttribute("class", "library-container");
-  renderBookList(libraryContainer, library);
-
   wrapper.append(heading, libraryContainer);
 
   // Generate and bind "+" button
@@ -123,20 +121,7 @@ function renderPage() {
 
   // Append all elements
   body.append(header, wrapper, modal, plusButton, copyright);
+  renderBookList(libraryContainer, library);
 }
 
-// Initialization function
-async function initialize() {
-
-  // Load default data
-  const initData = [9780393317558, 9780743264730, 9780812979688, 9781501111112, 9780099541530];
-  const addBooks = [];
-  for (let i=0; i<initData.length; i+=1) {
-    addBooks.push(addBook(initData[i]));
-  }
-  await Promise.all(addBooks);
-
-  renderPage();
-}
-
-initialize();
+renderPage()

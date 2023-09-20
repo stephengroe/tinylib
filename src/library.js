@@ -1,5 +1,12 @@
-// Main library array
+import {storeData, retrieveData} from "./local-storage";
+
+// Initialize main library array
 const library = [];
+const storedLibrary = retrieveData();
+
+if (storedLibrary.length > 0) {
+  library.push(...storedLibrary);
+}
 
 // Book class definition
 class Book {
@@ -32,6 +39,7 @@ async function addBook(isbn) {
         imageUrl: bookData.cover.medium,
       })
     );
+    storeData(library);
   } catch (error) {
     console.error(error);
   }
@@ -41,6 +49,7 @@ async function addBook(isbn) {
 function deleteBook(id) {
   const index = library.flatMap(book => book.id).indexOf(id);
   library.splice(index, 1);
+  storeData(library);
 }
 
 // Generate array of book elements
