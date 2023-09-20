@@ -143,6 +143,8 @@ button:hover {
   color: white;
 }
 
+/* Modal */
+
 #add-button {
   position: fixed;
   bottom: 1rem;
@@ -161,6 +163,57 @@ button:hover {
   -webkit-backdrop-filter: blur(3px);
   background-color: rgba(255, 255, 255, 0.25);
 }
+
+form {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+
+  margin: 2em;
+}
+
+label {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin: 1em;
+}
+
+label input, label input:focus, label input.valid {
+  background-color: white;
+
+  font-size: 1.5rem;
+  padding: 0.5em;
+
+  border-radius: var(--border-radius);
+  border: 1px solid var(--site-color-tertiary);
+  outline: none;
+}
+
+label input.invalid {
+  background-color: #ffdada;
+}
+
+label .error {
+  background-color: red;
+  border-radius: var(--border-radius);
+
+  width: 100%;
+  padding: 0.5em 0;
+
+  color: white;
+  text-align: center;
+}
+
+label .error.inactive {
+  display: none;
+}
+
+label .error.active {
+  display: block;
+}
+
+/* Copyright */
 
 #copyright {
   text-align: center;

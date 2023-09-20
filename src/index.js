@@ -29,15 +29,21 @@ function generateModal() {
   const form = document.createElement("form");
 
   // ISBN input
-  const isbn = document.createElement("input");
-  isbn.setAttribute("type", "text");
-  isbn.setAttribute("name", "isbn");
-  isbn.setAttribute("id", "form-isbn");
-  isbn.setAttribute("value", "9781501111112");
-
   const isbnLabel = document.createElement("label");
   isbnLabel.setAttribute("for", "form-isbn");
   isbnLabel.textContent = "ISBN";
+
+  const isbnInput = document.createElement("input");
+  isbnInput.setAttribute("type", "text");
+  isbnInput.setAttribute("name", "isbn");
+  isbnInput.setAttribute("id", "form-isbn");
+  isbnInput.setAttribute("value", "9781501111112");
+
+  const isbnError = document.createElement("span");
+  isbnError.setAttribute("aria-live", "polite");
+  isbnError.setAttribute("class", "error inactive");
+
+  isbnLabel.append(isbnInput, isbnError);
 
   // "Add" button
   const addButton = document.createElement("button");
@@ -46,18 +52,30 @@ function generateModal() {
 
   addButton.addEventListener("click",
   async (event) => {
+    console.log(event);
     event.preventDefault();
+
+    const eventIsbnInput = event.currentTarget.form.isbn;
+    const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
     const enteredIsbn = event.currentTarget.form.isbn.value;
-    if (isValidIsbn(enteredIsbn)) {
+
+    if (!isValidIsbn(enteredIsbn)) {
+      
+      eventIsbnInput.classList.add("invalid");
+      eventIsbnError.classList.add("active");
+      eventIsbnError.textContent = "Invalid ISBN";
+
+    } else {
+      eventIsbnInput.classList.add("valid");
+      eventIsbnError.classList.remove("active");
+
       await addBook(formatIsbn(enteredIsbn));
       renderBookList(document.querySelector(".library-container"), library);
       document.querySelector("#add-book-modal").close();
-    } else {
-      alert("Invalid ISBN!");
     }
   });
 
-  form.append(isbnLabel, isbn, addButton);
+  form.append(isbnLabel, addButton);
 
   modal.append(heading, form);
   return modal;
