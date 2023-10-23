@@ -1,7 +1,7 @@
 import React from 'react'
 import { formatIsbn, isValidIsbn } from './isbn';
 
-function AddBookModal() {
+function NewBookModal() {
   const addBook = async () => {
     const eventIsbnInput = event.currentTarget.form.isbn;
     const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
@@ -17,12 +17,12 @@ function AddBookModal() {
       eventIsbnError.classList.remove("active");
   
       await createBookElement(formatIsbn(enteredIsbn)); // addBook in Library
-      document.querySelector("#add-book-modal").close();
+      document.querySelector("#new-book-modal").close();
     }
   }
 
   return (
-    <dialog id="add-book-modal">
+    <dialog id="new-book-modal">
       <h2>Add to Library</h2>
       <form>
         <label>
@@ -38,4 +38,4 @@ function AddBookModal() {
   )
 }
 
-export default AddBookModal;
+export default NewBookModal;
