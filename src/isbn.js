@@ -1,4 +1,4 @@
-export function formatIsbn(isbn) {
+function formatIsbn(isbn) {
   let result = isbn.toString();
 
   // Remove dashes
@@ -12,7 +12,7 @@ export function formatIsbn(isbn) {
   return result;
 }
 
-export function isValidIsbn(isbn) {
+function isValidIsbn(isbn) {
   let revisedIsbn = formatIsbn(isbn);
 
   // ISBN must be 10 or 13 characters long
@@ -61,3 +61,5 @@ export function isValidIsbn(isbn) {
 
   return true;
 }
+
+export {formatIsbn, isValidIsbn};

@@ -6,6 +6,10 @@ import AddBookModal from './addbookmodal'
 import Footer from './footer'
 
 function App() {
+  const openModal = () => {
+    document.querySelector("#add-book-modal").showModal();
+  }
+
   return (
     <>
       <Header />
@@ -14,16 +18,10 @@ function App() {
         <BookList />
       </div>
       <AddBookModal />
-      <button id="add-button">+</button>
+      <button id="add-button" onClick={openModal}>+</button>
       <Footer />
     </>
   )
 }
 
 export default App
-
-/* Add listener to add button */
-// plusButton.addEventListener("click",
-// () => {
-//   document.querySelector("#add-book-modal").showModal();
-// });
