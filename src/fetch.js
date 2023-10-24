@@ -8,14 +8,14 @@ async function fetchIsbn(isbn) {
        }
     );
     let bookData = await response.json();
-
+    
     bookData = bookData[`ISBN:${isbn}`]; // Remove parent 'ISBN:####' object
 
     const bookDetails = {
       isbn,
       title: bookData.title,
-      author: bookData.authors[0].name,
-      imageUrl: bookData.cover.medium,
+      author: bookData.authors[0]?.name,
+      imageUrl: bookData.cover?.medium,
     }
 
     return bookDetails;

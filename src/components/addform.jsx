@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import FormInput from './forminput';
 import { formatIsbn, validateIsbn, ValidationError } from '../isbn';
 import { addBook } from '../library';
@@ -33,7 +33,7 @@ function AddForm() {
         errorSpan.classList.remove('inactive');
         errorSpan.classList.add('active');
       } else {
-        console.log(error);
+        console.error(error);
       }
     }
   }
