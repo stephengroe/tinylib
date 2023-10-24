@@ -1,20 +1,25 @@
 import createBook from "./book";
-import {storeData, retrieveData} from "./local-storage";
 
+// Fetch library from local storage
+let library = JSON.parse(localStorage.getItem('library')) || [];
 
+function updateLibrary(library) {
+  localStorage.setItem("library", JSON.stringify(library));
+}
 
+function addBook(details) {
+  const book = createBook(details);
+  library.push(book);
+  updateLibrary(library);
+}
 
-
-// Initialize main library array
-const library = [];
-const storedLibrary = retrieveData();
-
-if (storedLibrary.length > 0) {
-  library.push(...storedLibrary);
+function deleteBook(id) {
+  library = library.filter(book => book.id !== id);
+  updateLibrary(library);
 }
 
 // Create new book from OpenLibrary API
-async function addBook(isbn) {
+async function addBookByIsbn(isbn) {
   try {
     const response = await fetch(
       `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`,
@@ -24,36 +29,20 @@ async function addBook(isbn) {
     );
     let bookData = await response.json();
 
-    bookData =  bookData[`ISBN:${isbn}`]; // Remove parent 'ISBN:####' object
-    library.push(
-      new Book({
-        isbn,
-        title: bookData.title,
-        author: bookData.authors[0].name,
-        imageUrl: bookData.cover.medium,
-      })
-    );
-    storeData(library);
+    bookData = bookData[`ISBN:${isbn}`]; // Remove parent 'ISBN:####' object
+
+    const bookDetails = {
+      isbn,
+      title: bookData.title,
+      author: bookData.authors[0].name,
+      imageUrl: bookData.cover.medium,
+    }
+
+    addBook(bookDetails);
   } catch (error) {
     console.error(error);
   }
 }
 
-// Delete book from library array
-function deleteBook(id) {
-  const index = library.flatMap(book => book.id).indexOf(id);
-  library.splice(index, 1);
-  storeData(library);
-}
-
-// const books = [
-//   {
-//     id: ,
-//     title: 'Walden',
-//     author: 'Henry David Thoreau',
-//     imageUrl: 'https://dummyimage.com/80x120/000000/fff&text=+cover+'
-//   }
-// ]
-
 export default library;
-export {library, Book, addBook};
+export { addBook, deleteBook, addBookByIsbn };
