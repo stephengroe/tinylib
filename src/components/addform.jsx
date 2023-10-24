@@ -4,8 +4,8 @@ import { formatIsbn, validateIsbn, ValidationError } from '../isbn';
 import { addBook } from '../library';
 import fetchIsbn from '../fetch.js';
 
-function AddForm() {
-  const [isbn, setIsbn] = useState('9780812979688');
+function AddForm({books}) {
+  const [isbn, setIsbn] = useState(''); // 9780812979688
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -48,28 +48,13 @@ function AddForm() {
 
     addBook(newBook);
     document.querySelector("#new-book-modal").close();
+
+    // Reset form inputs
+    setIsbn('TEST');
+    setTitle('');
+    setAuthor('');
+    setImageUrl('');
   }
-
-
-
-
-  //   const eventIsbnInput = event.currentTarget.form.isbn;
-  //   const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
-  //   const enteredIsbn = event.currentTarget.form.isbn.value;
-  
-  //   if (!isValidIsbn(enteredIsbn)) {
-  //     eventIsbnInput.classList.add("invalid");
-  //     eventIsbnError.classList.add("active");
-  //     eventIsbnError.textContent = "Invalid ISBN";
-  
-  //   } else {
-  //     eventIsbnInput.classList.remove("invalid");
-  //     eventIsbnError.classList.remove("active");
-  
-  //     await createBookElement(formatIsbn(enteredIsbn)); // addBook in Library
-      
-  //   }
-  // }
 
   return (
     <dialog id="new-book-modal">

@@ -128,26 +128,26 @@ button:hover {
   position: relative;
 }
 
-.book-container .delete-button {
+.book-container .delete-button,
+.book-container .edit-button {
   display: none;
-  cursor: pointer;
-  position: absolute;
-  top: 1em;
-  right: 1em;
 }
 
-.book-container:hover .delete-button {
+.book-container:hover .delete-button,
+.book-container:hover .edit-button {
   display: block;
+  cursor: pointer;
 }
 
-#add-button, .delete-button {
-  width: 2em;
-  height: 2em;
+button {
   font-weight: 100;
-  border-radius: 100%;
+  border-radius: var(--border-radius);
   border: none;
   background-color: var(--site-color-secondary);
   color: white;
+  padding: 1em 2em;
+  font-size: 1rem;
+  margin: auto;
 }
 
 /* Modal */
@@ -157,6 +157,10 @@ button:hover {
   bottom: 1rem;
   right: 1rem;
   font-size: 2rem;
+  width: 2em;
+  height: 2em;
+  border-radius: 100%;
+  padding: 0;
 }
 
 #new-book-modal {
