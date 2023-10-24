@@ -1,6 +1,6 @@
 import React from 'react';
 
-function FormElement({ label, type, name, value }) {
+function FormInput({ type, label, name, value }) {
   return (
     <label>
       {label}
@@ -14,4 +14,4 @@ function FormElement({ label, type, name, value }) {
   )
 }
 
-export default FormElement;
+export default FormInput;

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
+import FormInput from './forminput';
 import { formatIsbn, isValidIsbn } from '../isbn';
 
 function AddForm(event) {
+  const [isbn, setIsbn] = useState('9780812979688');
+  const [title, setTitle] = useState('Meditations');
+  const [author, setAuthor] = useState('Marcus Aurelius');
+
   const addBook = async () => {
     const eventIsbnInput = event.currentTarget.form.isbn;
     const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
@@ -24,37 +29,54 @@ function AddForm(event) {
   return (
     <dialog id="new-book-modal">
       <div>
-        <h2>Auto-add with ISBN</h2>
-        <form>
-          <label>
-            ISBN
-            <input type="text" name="isbn" defaultValue="9780812979688"></input>
-            <span aria-live="polite" className="error inactive"></span>
-          </label>
+        <h2>Add Book</h2>
+        <form onSubmit={e => {
+          e.preventDefault();
+        }}>
+          <div>
+            <FormInput
+              type='text'
+              label='ISBN'
+              name='isbn'
+              value={isbn}
+              onChange={e => {
+                setIsbn(e.target.value)
+              }}
+            />
+
+            <button
+              type="button"
+              onClick={(e) => {
+                e.preventDefault();
+                addBook(e);
+              }}
+            >Fetch from ISBN</button>
+          </div>
+
+          <FormInput
+            type='text'
+            label='Title'
+            name='title'
+            value={title}
+            onChange={e => {
+              setTitle(e.target.value)
+            }}
+          />
+
+          <FormInput
+            type='text'
+            label='Author'
+            name='author'
+            value={author}
+            onChange={e => {
+              setAuthor(e.target.value)
+            }}
+          />
 
           <button
-            
             type="submit"
-            onClick={(e) => {
-              e.preventDefault();
-              addBook(e);
-            }}
-            >Add Book</button>
-        </form>
-      </div>
-      <div>
-        <h2>Add manually</h2>
-        <form>
-          <label>
-            Title
-            <input type="text" name="title" defaultValue="Meditations"></input>
-            <span aria-live="polite" className="error inactive"></span>
-          </label>
-          <label>
-            Title
-            <input type="text" name="title" defaultValue="Meditations"></input>
-            <span aria-live="polite" className="error inactive"></span>
-          </label>
+          >Add Book</button>
+
         </form>
       </div>
     </dialog>

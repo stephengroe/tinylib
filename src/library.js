@@ -8,17 +8,6 @@ if (storedLibrary.length > 0) {
   library.push(...storedLibrary);
 }
 
-// Book class definition
-class Book {
-  constructor(details) {
-    this.isbn = details.isbn;
-    this.title = details.title;
-    this.author = details.author;
-    this.imageUrl = details.imageUrl || "https://dummyimage.com/80x120/000000/fff&text=+cover+";
-    this.id = crypto.randomUUID();
-  }
-}
-
 // Create new book from OpenLibrary API
 async function addBook(isbn) {
   try {
