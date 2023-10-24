@@ -1,30 +1,59 @@
 import React, { useState, useEffect } from 'react';
 import FormInput from './forminput';
 import { formatIsbn, isValidIsbn } from '../isbn';
+import { addBook } from '../library';
+import fetchIsbn from '../fetch.js';
 
 function AddForm(event) {
   const [isbn, setIsbn] = useState('9780812979688');
-  const [title, setTitle] = useState('Meditations');
-  const [author, setAuthor] = useState('Marcus Aurelius');
+  const [title, setTitle] = useState('');
+  const [author, setAuthor] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
-  const addBook = async () => {
-    const eventIsbnInput = event.currentTarget.form.isbn;
-    const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
-    const enteredIsbn = event.currentTarget.form.isbn.value;
-  
-    if (!isValidIsbn(enteredIsbn)) {
-      eventIsbnInput.classList.add("invalid");
-      eventIsbnError.classList.add("active");
-      eventIsbnError.textContent = "Invalid ISBN";
-  
-    } else {
-      eventIsbnInput.classList.remove("invalid");
-      eventIsbnError.classList.remove("active");
-  
-      await createBookElement(formatIsbn(enteredIsbn)); // addBook in Library
-      document.querySelector("#new-book-modal").close();
+  const fetchFromIsbn = async (isbn) => {
+    try {
+      const newBook = await fetchIsbn(isbn);
+
+      setTitle(newBook.title);
+      setAuthor(newBook.author);
+      setImageUrl(newBook.imageUrl);
+    } catch(error) {
+      console.log(error);
     }
   }
+
+  const generateBook = (e) => {
+    const newBook = {
+      isbn: e.target.form.isbn.value,
+      title: e.target.form.title.value,
+      author: e.target.form.author.value,
+      imageUrl: e.target.form.imageUrl.value,
+    }
+
+    addBook(newBook);
+    document.querySelector("#new-book-modal").close();
+  }
+
+
+
+
+  //   const eventIsbnInput = event.currentTarget.form.isbn;
+  //   const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
+  //   const enteredIsbn = event.currentTarget.form.isbn.value;
+  
+  //   if (!isValidIsbn(enteredIsbn)) {
+  //     eventIsbnInput.classList.add("invalid");
+  //     eventIsbnError.classList.add("active");
+  //     eventIsbnError.textContent = "Invalid ISBN";
+  
+  //   } else {
+  //     eventIsbnInput.classList.remove("invalid");
+  //     eventIsbnError.classList.remove("active");
+  
+  //     await createBookElement(formatIsbn(enteredIsbn)); // addBook in Library
+      
+  //   }
+  // }
 
   return (
     <dialog id="new-book-modal">
@@ -48,7 +77,7 @@ function AddForm(event) {
               type="button"
               onClick={(e) => {
                 e.preventDefault();
-                addBook(e);
+                fetchFromIsbn(e.target.form.isbn.value);
               }}
             >Fetch from ISBN</button>
           </div>
@@ -73,8 +102,22 @@ function AddForm(event) {
             }}
           />
 
+          <FormInput
+            type='url'
+            label='Image URL'
+            name='imageUrl'
+            value={imageUrl}
+            onChange={e => {
+              setImageUrl(e.target.value)
+            }}
+          />
+
           <button
             type="submit"
+            onClick={(e) => {
+              e.preventDefault();
+              generateBook(e);
+            }}
           >Add Book</button>
 
         </form>
