@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import FormInput from './forminput';
-import { formatIsbn, isValidIsbn } from '../isbn';
+import { formatIsbn, validateIsbn, ValidationError } from '../isbn';
 import { addBook } from '../library';
 import fetchIsbn from '../fetch.js';
 
-function AddForm(event) {
+function AddForm() {
   const [isbn, setIsbn] = useState('9780812979688');
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
@@ -12,13 +12,29 @@ function AddForm(event) {
 
   const fetchFromIsbn = async (isbn) => {
     try {
-      const newBook = await fetchIsbn(isbn);
+      const formattedIsbn = formatIsbn(isbn);
+      validateIsbn(formattedIsbn);
+
+      const newBook = await fetchIsbn(formattedIsbn);
 
       setTitle(newBook.title);
       setAuthor(newBook.author);
       setImageUrl(newBook.imageUrl);
     } catch(error) {
-      console.log(error);
+      if (error instanceof ValidationError) {
+        const input = document.querySelector("input[name='isbn']");
+        input.classList.add('invalid');
+
+        const errorSpan = input.nextElementSibling;
+        errorSpan.textContent = error.message;
+        errorSpan.classList.add("active");
+
+        errorSpan.textContent = error.message;
+        errorSpan.classList.remove('inactive');
+        errorSpan.classList.add('active');
+      } else {
+        console.log(error);
+      }
     }
   }
 
