@@ -1,9 +1,10 @@
 import './meyer-reset.css'
 import './App.css'
-import Header from './header'
-import BookList from './booklist'
+import Header from './components/header'
+import BookList from './components/booklist'
 import NewBookModal from './addbook'
-import Footer from './footer'
+import Footer from './components/footer'
+import { library } from './library'
 
 function App() {
   const openModal = () => {

@@ -1,8 +1,9 @@
 import React from 'react'
 import { formatIsbn, isValidIsbn } from './isbn';
 
-function NewBookModal() {
+function NewBookModal(event) {
   const addBook = async () => {
+    console.log(event);
     const eventIsbnInput = event.currentTarget.form.isbn;
     const eventIsbnError = event.currentTarget.form.isbn.nextElementSibling;
     const enteredIsbn = event.currentTarget.form.isbn.value;
@@ -28,10 +29,10 @@ function NewBookModal() {
         <label>
           ISBN
           <input type="text" name="isbn" defaultValue="9780812979688"></input>
-            <span aria-live="polite" className="error inactive"></span>
+          <span aria-live="polite" className="error inactive"></span>
         </label>
 
-        <button type="submit" onClick={addBook}>Add Book</button>
+        <button type="submit" onClick={(e) => addBook(e)}>Add Book</button>
 
       </form>
     </dialog>
