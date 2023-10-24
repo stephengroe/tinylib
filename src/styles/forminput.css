@@ -1,0 +1,64 @@
+
+label {
+  display: flex;
+  flex-flow: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1em;
+}
+
+label > input {
+  background-color: white;
+
+  font-size: 1.5rem;
+  padding: 0.5em;
+
+  border-radius: var(--border-radius);
+  border: 1px solid var(--site-color-tertiary);
+  outline: none;
+}
+
+label input.invalid, label input.invalid:focus {
+  background-color: #ffdada;
+  animation: shake 150ms;
+}
+
+label .error {
+  background-color: red;
+  border-radius: var(--border-radius);
+
+  width: 100%;
+  padding: 1em;
+
+  color: white;
+  text-align: center;
+}
+
+label .error.inactive {
+  display: none;
+}
+
+label .error.active {
+  display: block;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0, 0);
+  }
+  13% {
+    transform: translate(3px, 0);
+  }
+  38% {
+    transform: translate(-3px, 0);
+  }
+  63% {
+    transform: translate(3px, 0);
+  }
+  87% {
+    transform: translate(-3px, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}

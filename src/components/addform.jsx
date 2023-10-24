@@ -3,6 +3,7 @@ import FormInput from './forminput';
 import { formatIsbn, validateIsbn, ValidationError } from '../isbn';
 import { addBook } from '../library';
 import fetchIsbn from '../fetch.js';
+import '../styles/addform.css';
 
 function AddForm({books}) {
   const [isbn, setIsbn] = useState(''); // 9780812979688
@@ -63,7 +64,7 @@ function AddForm({books}) {
         <form onSubmit={e => {
           e.preventDefault();
         }}>
-          <div>
+          <div class='form-section'>
             <FormInput
               type='text'
               label='ISBN'

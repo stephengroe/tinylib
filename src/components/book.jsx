@@ -1,4 +1,5 @@
 import React from 'react';
+import '../styles/book.css';
 
 function Book({ bookData, bookList }) {
   return (
@@ -26,7 +27,6 @@ function Book({ bookData, bookList }) {
         className='edit-button'
         onClick={(e) => {
           e.preventDefault();
-          
         }}
         >Edit
       </button>

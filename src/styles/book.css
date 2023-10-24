@@ -1,0 +1,53 @@
+.book-container {
+  background-color: var(--site-background-color);
+  cursor: pointer;
+  padding: 1em;
+  box-shadow: var(--light-shadow);
+  border-radius: var(--border-radius);
+  margin: 0 auto 1em auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4ch;
+  transition: box-shadow var(--transition-time);
+  text-align: left;
+}
+
+.book-container:hover {
+  box-shadow: var(--medium-shadow);
+  transition: box-shadow var(--transition-time);
+}
+
+.book-container .book-image {
+  height: 6rem;
+  width: 4rem;
+  background-size: cover;
+  background-repeat: no-repeat;
+  border-radius: var(--border-radius);
+  box-shadow: var(--light-shadow);
+}
+
+.book-container h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5em;
+}
+
+.book-container p {
+  color: var(--site-color-tertiary);
+}
+
+.book-container {
+  position: relative;
+}
+
+.book-container .delete-button,
+.book-container .edit-button {
+  display: none;
+}
+
+.book-container:hover .delete-button,
+.book-container:hover .edit-button {
+  display: block;
+  cursor: pointer;
+}

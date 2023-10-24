@@ -1,0 +1,10 @@
+/* Copyright */
+
+#copyright {
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  font-size: 0.75rem;
+  color: var(--site-color-tertiary);
+  bottom: 1rem;
+}
