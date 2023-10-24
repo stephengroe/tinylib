@@ -61,7 +61,5 @@ function deleteBook(id) {
 //   }
 // ]
 
-addBook('9780812979688');
-
 export default library;
 export {library, Book, addBook};

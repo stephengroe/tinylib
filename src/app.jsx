@@ -2,9 +2,8 @@ import './meyer-reset.css'
 import './App.css'
 import Header from './components/header'
 import BookList from './components/booklist'
-import NewBookModal from './addbook'
+import AddForm from './components/addform'
 import Footer from './components/footer'
-import { library } from './library'
 
 function App() {
   const openModal = () => {
@@ -20,8 +19,15 @@ function App() {
           <BookList />
         </div>
       </div>
-      <NewBookModal />
-      <button id="add-button" onClick={openModal}>+</button>
+      <AddForm />
+      <button
+        id="add-button"
+        aria-label='Add new book'
+        onClick={(e) => {
+          e.preventDefault();
+          openModal();
+        }}
+        >+</button>
       <Footer />
     </>
   )

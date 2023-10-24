@@ -1,7 +1,6 @@
 import React from 'react';
 
 function Book(book) {
-  console.log(book);
   return (
     <div className='book-container' data-book-id={book.id}>
       <div
