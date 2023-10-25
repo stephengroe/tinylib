@@ -34,7 +34,7 @@ label .error {
   text-align: center;
 }
 
-label .error.inactive {
+label .error {
   display: none;
 }
 

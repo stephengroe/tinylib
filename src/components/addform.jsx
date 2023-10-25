@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import FormInput from './forminput';
-import { formatIsbn, validateIsbn, ValidationError } from '../isbn';
+import { formatIsbn, validateIsbn } from '../isbn';
 import fetchIsbn from '../fetch.js';
 import '../styles/addform.css';
 
 function AddForm({books, addBook}) {
-  const [isbn, setIsbn] = useState('9780812979688'); // 9780812979688
+  const [isbn, setIsbn] = useState(''); // 9780812979688
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -27,10 +27,6 @@ function AddForm({books, addBook}) {
       const errorSpan = input.nextElementSibling;
       errorSpan.textContent = error.message;
       errorSpan.classList.add("active");
-
-      errorSpan.textContent = error.message;
-      errorSpan.classList.remove('inactive');
-      errorSpan.classList.add('active');
     }
   }
 
@@ -46,7 +42,7 @@ function AddForm({books, addBook}) {
     document.querySelector("#new-book-modal").close();
 
     // Reset form inputs
-    setIsbn('TEST');
+    setIsbn('');
     setTitle('');
     setAuthor('');
     setImageUrl('');
@@ -66,7 +62,10 @@ function AddForm({books, addBook}) {
               name='isbn'
               value={isbn}
               onChange={e => {
-                setIsbn(e.target.value)
+                setIsbn(e.target.value);
+                e.target.classList.remove('invalid');
+                const errorSpan = e.target.nextElementSibling;
+                errorSpan.classList.remove("active");
               }}
             />
 
@@ -74,7 +73,7 @@ function AddForm({books, addBook}) {
               type="button"
               onClick={(e) => {
                 e.preventDefault();
-                fetchFromIsbn(e.target.form.isbn.value);
+                fetchFromIsbn(isbn);
               }}
             >Fetch from ISBN</button>
           </div>

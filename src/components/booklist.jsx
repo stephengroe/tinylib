@@ -13,7 +13,6 @@ function BookList({ books, deleteBook }) {
   } else {
     return (
       <>
-      {console.log(books)}
       {books.map(bookData => {
         return (
           <Book key={bookData.id} bookData={bookData} bookList={books} deleteBook={deleteBook} />
