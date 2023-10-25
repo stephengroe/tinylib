@@ -25,7 +25,7 @@ function validateIsbn(isbn) {
 
   // ISBN must be 10 or 13 characters long
   if (!(revisedIsbn.length === 10 || revisedIsbn.length === 13)) {
-    throw new ValidationError(`Valid ISBNs are either 10 or 13 characters, excluding dashes. This entry is ${revisedIsbn.length} characters long.`);
+    throw new ValidationError(`Please enter a valid ISBN of either 10 or 13 characters. This entry is ${revisedIsbn.length} characters.`);
   }
   
   // ISBN must only contain numbers 0-9 and the letter X
@@ -48,7 +48,7 @@ function validateIsbn(isbn) {
     }
 
     if ((checkSum + finalDigit) % 11 !== 0) {
-      throw new ValidationError(`This is an invalid 10-digit ISBN, per the official verification formula. Please verify each digit is correct.`);
+      throw new ValidationError(`This is an invalid 10-digit ISBN. Please verify each digit is correct.`);
     }
   }
 
@@ -63,7 +63,7 @@ function validateIsbn(isbn) {
     }
     
     if ((checkSum + finalDigit) % 10 !== 0) {
-      throw new ValidationError(`This is an invalid 13-digit ISBN, per the official verification formula. Please verify each digit is correct.`);
+      throw new ValidationError(`This is an invalid 13-digit ISBN. Please verify each digit is correct.`);
 
     }
   }
