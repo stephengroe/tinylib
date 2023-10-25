@@ -3,7 +3,7 @@ import './App.css'
 import React, { useState, useEffect } from 'react';
 import Header from './components/header'
 import BookList from './components/booklist'
-import AddForm from './components/addform'
+import AddDialog from './components/adddialog'
 import Footer from './components/footer'
 import createBook from "./book";
 
@@ -40,7 +40,7 @@ function App() {
           <BookList books={library} deleteBook={deleteBook} />
         </div>
       </div>
-      <AddForm books={library} addBook={addBook} />
+      <AddDialog books={library} addBook={addBook} />
       <button
         id="add-button"
         aria-label='Add new book'

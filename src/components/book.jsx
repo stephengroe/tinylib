@@ -14,22 +14,27 @@ function Book({ bookData, bookList, deleteBook }) {
         <p className='book-author'>{bookData.author}</p>
       </div>
 
-      <button
-        className='delete-button'
-        onClick={(e) => {
-          e.preventDefault();
-          deleteBook(bookData.id);          
-        }}
-        >Delete
-      </button>
-
-      <button
-        className='edit-button'
-        onClick={(e) => {
-          e.preventDefault();
-        }}
-        >Edit
-      </button>
+      <ul className='book-actions'>
+        <li>
+          <button
+            className='delete-button'
+            onClick={(e) => {
+              e.preventDefault();
+              deleteBook(bookData.id);  
+            }}
+            >Delete
+          </button>
+        </li>
+        <li>
+          <button
+            className='edit-button'
+            onClick={(e) => {
+              e.preventDefault();
+            }}
+            >Edit
+          </button>
+        </li>
+      </ul>
 
       </div>
   )

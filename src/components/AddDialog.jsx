@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import FormInput from './forminput';
 import { formatIsbn, validateIsbn } from '../isbn';
 import fetchIsbn from '../fetch.js';
-import '../styles/addform.css';
+import '../styles/adddialog.css';
 
-function AddForm({books, addBook}) {
-  const [isbn, setIsbn] = useState(''); // 9780812979688
+function AddDialog({books, addBook}) {
+  const [isbn, setIsbn] = useState('9780812979688'); // 9780812979688
   const [title, setTitle] = useState('');
   const [author, setAuthor] = useState('');
   const [imageUrl, setImageUrl] = useState('');
@@ -122,4 +122,4 @@ function AddForm({books, addBook}) {
   )
 }
 
-export default AddForm;
+export default AddDialog;

@@ -41,13 +41,28 @@
   position: relative;
 }
 
-.book-container .delete-button,
-.book-container .edit-button {
+ul.book-actions {
+  list-style-type: none;
+  position: absolute;
+  right: 1em;
+  top: 1em;
+  text-align: right;
   display: none;
+  line-height: 1.5;
 }
 
-.book-container:hover .delete-button,
-.book-container:hover .edit-button {
+.book-container:hover ul.book-actions {
   display: block;
-  cursor: pointer;
+}
+
+ul.book-actions button {
+  background-color: transparent;
+  color: grey;
+  padding: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+ul.book-actions button:hover {
+  border-bottom: 1px solid grey;
 }
