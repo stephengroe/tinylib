@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import FormInput from './forminput';
+import FormInput from './FormInput';
 import { formatIsbn, validateIsbn } from '../isbn';
 import fetchIsbn from '../fetch.js';
 import '../styles/adddialog.css';
