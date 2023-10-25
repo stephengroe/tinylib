@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Book from './book';
 import '../styles/booklist.css';
 
-
-function BookList({ books }) {
+function BookList({ books, deleteBook }) {
 
   if (books.length === 0) {
     return (
@@ -14,9 +13,10 @@ function BookList({ books }) {
   } else {
     return (
       <>
+      {console.log(books)}
       {books.map(bookData => {
         return (
-          <Book key={bookData.id} bookData={bookData} bookList={books} />
+          <Book key={bookData.id} bookData={bookData} bookList={books} deleteBook={deleteBook} />
         )
       })}
       </>

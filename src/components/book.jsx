@@ -1,7 +1,7 @@
 import React from 'react';
 import '../styles/book.css';
 
-function Book({ bookData, bookList }) {
+function Book({ bookData, bookList, deleteBook }) {
   return (
     <div className='book-container' data-book-id={bookData.id}>
       <div
@@ -18,7 +18,7 @@ function Book({ bookData, bookList }) {
         className='delete-button'
         onClick={(e) => {
           e.preventDefault();
-          
+          deleteBook(bookData.id);          
         }}
         >Delete
       </button>
