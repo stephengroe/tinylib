@@ -20,7 +20,7 @@ async function fetchIsbn(isbn) {
 
     return bookDetails;
   } catch (error) {
-    console.error(error);
+    throw new Error('A book with this ISBN was not found. Consider entering it manually.');
   }
 }
 

@@ -21,20 +21,16 @@ function AddForm({books, addBook}) {
       setAuthor(newBook.author);
       setImageUrl(newBook.imageUrl);
     } catch(error) {
-      if (error instanceof ValidationError) {
-        const input = document.querySelector("input[name='isbn']");
-        input.classList.add('invalid');
+      const input = document.querySelector("input[name='isbn']");
+      input.classList.add('invalid');
 
-        const errorSpan = input.nextElementSibling;
-        errorSpan.textContent = error.message;
-        errorSpan.classList.add("active");
+      const errorSpan = input.nextElementSibling;
+      errorSpan.textContent = error.message;
+      errorSpan.classList.add("active");
 
-        errorSpan.textContent = error.message;
-        errorSpan.classList.remove('inactive');
-        errorSpan.classList.add('active');
-      } else {
-        console.error(error);
-      }
+      errorSpan.textContent = error.message;
+      errorSpan.classList.remove('inactive');
+      errorSpan.classList.add('active');
     }
   }
 
