@@ -35,7 +35,7 @@ function App() {
     <>
       <Header />
       <div id="wrapper">
-        <h1>My Library</h1>
+        <h1>My Library ({library.length === 1 ? `1 book` : `${library.length} books`})</h1>
         <div className="library-container">
           <BookList books={library} deleteBook={deleteBook} />
         </div>
