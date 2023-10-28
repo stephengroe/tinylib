@@ -9,6 +9,8 @@ I'm building this app to solve my book organization problem. I own a few hundred
 
 ## Existing Features
 
+![Demo screenshot](screenshot.png)
+
 ### Manage a library in the browser
 
 The app stores book data on the local browser using the LocalStorage API.
@@ -45,6 +47,6 @@ The app is a work in progress. Here are the features I'm building out right now:
 
 These are known problems with the current version:
 
-* Titles returned through the OpenLibrary API have inconsistent capitalization
-* The footer appears on top of the last book when titles are longer than initial screen height
-* Currently there's no user warning if OpenLibrary doesn't match a valid ISBN
+- [ ] Titles returned through the OpenLibrary API have inconsistent capitalization
+- [ ] The footer appears on top of the last book when titles are longer than initial screen height
+- [x] Currently there's no user warning if OpenLibrary doesn't match a valid ISBN
