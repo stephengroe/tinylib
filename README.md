@@ -49,4 +49,4 @@ These are known problems with the current version:
 
 - [ ] Titles returned through the OpenLibrary API have inconsistent capitalization
 - [ ] The footer appears on top of the last book when titles are longer than initial screen height
-- [x] Currently there's no user warning if OpenLibrary doesn't match a valid ISBN
+- [x] ~~Currently there's no user warning if OpenLibrary doesn't match a valid ISBN~~
