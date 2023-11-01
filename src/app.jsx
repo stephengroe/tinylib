@@ -6,6 +6,7 @@ import BookList from './components/booklist'
 import AddDialog from './components/adddialog'
 import Footer from './components/footer'
 import createBook from "./book";
+import AddButton from './AddButton';
 
 function App() {
   // Fetch library from local storage
@@ -41,14 +42,7 @@ function App() {
         </div>
       </div>
       <AddDialog books={library} addBook={addBook} />
-      <button
-        id="add-button"
-        aria-label='Add new book'
-        onClick={(e) => {
-          e.preventDefault();
-          openModal();
-        }}
-        >+</button>
+      <AddButton />
       <Footer />
     </>
   )
