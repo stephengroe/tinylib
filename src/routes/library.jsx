@@ -18,9 +18,16 @@ export default function Library() {
       <h1>My Library ({library.length} books)</h1>
       {library.map(bookData => {
         return (
-          <Link to={`/book/${bookData.id}`} key={bookData.id}>
-            <h1>This is a book!</h1>
-            <p>Details would go here.</p>
+          <Link to={`/book/${bookData.id}`} key={bookData.id} className='book-container'>
+            <div
+              className='book-image'
+              style={{backgroundImage: `url(${bookData.imageUrl})`}}
+            ></div>
+
+            <div>
+              <h3 className='book-title'>{bookData.title}</h3>
+              <p className='book-author'>{bookData.author}</p>
+            </div>
           </Link>
         )
       })}
