@@ -9,9 +9,7 @@ import createBook from "../book";
 import AddButton from '../AddButton';
 
 export default function Root() {
-  // Fetch library from local storage
-  let savedLibrary = JSON.parse(localStorage.getItem('library')) || [];
-  const [library, setLibrary] = useState(savedLibrary);
+  let library = [];
 
   useEffect(() => {
     localStorage.setItem("library", JSON.stringify(library));
