@@ -1,5 +1,5 @@
 function createBook(details) {
-  const id = crypto.randomUUID();
+  const id = Math.random().toString(36).slice(2,9);
   const isbn = details.isbn;
   const title = details.title;
   const author = details.author;
