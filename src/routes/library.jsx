@@ -5,13 +5,17 @@ export default function Library() {
 
   if (library.length === 0) {
     return (
-      <div className='empty-placeholder'>
-        No books here!
+      <div className="library-container">
+        <h1>My Library (no books)</h1>
+        <div className='empty-placeholder'>
+          No books here!
+        </div>
       </div>
     )
   } else {
     return (
-      <>
+      <div className="library-container">
+      <h1>My Library ({library.length} books)</h1>
       {library.map(bookData => {
         return (
           <Link to={`/book/${bookData.id}`} key={bookData.id}>
@@ -20,7 +24,7 @@ export default function Library() {
           </Link>
         )
       })}
-      </>
+      </div>
     )
   }
 }

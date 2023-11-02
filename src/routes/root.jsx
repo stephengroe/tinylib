@@ -9,11 +9,11 @@ import createBook from "../book";
 import AddButton from '../AddButton';
 
 export default function Root() {
-  let library = [];
+  let library = JSON.parse(localStorage.getItem('library')) || []
 
-  useEffect(() => {
-    localStorage.setItem("library", JSON.stringify(library));
-  }, [library]);
+  // useEffect(() => {
+  //   localStorage.setItem("library", JSON.stringify(library));
+  // }, [library]);
 
   const addBook = (details) => {
     const book = createBook(details);
@@ -30,10 +30,7 @@ export default function Root() {
     <>
       <Header />
       <div id="wrapper">
-        <h1>My Library ({library.length === 1 ? `1 book` : `${library.length} books`})</h1>
-        <div className="library-container">
-          <Outlet />
-        </div>
+        <Outlet />
       </div>
       <AddDialog books={library} addBook={addBook} />
       <AddButton />
