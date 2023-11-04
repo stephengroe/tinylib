@@ -9,3 +9,8 @@
   max-width: 1280px;
   margin: auto;
 }
+
+.header-wrapper a,
+.header-wrapper a:visited {
+  color: white;
+}
