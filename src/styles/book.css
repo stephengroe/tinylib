@@ -12,6 +12,8 @@
   gap: 4ch;
   transition: box-shadow var(--transition-time);
   text-align: left;
+
+  text-decoration: none;
 }
 
 .book-container:hover {
