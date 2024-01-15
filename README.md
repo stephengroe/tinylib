@@ -1,5 +1,11 @@
 # Tinylib
 
+---
+
+**NOTE:** I'm in the process of refactoring this project into [booksort-backend](https://github.com/stephengroe/booksort-backend) and [booksort-frontend](https://github.com/stephengroe/booksort-frontend) repos. All future updates will go there, and I'll archive this repo once that's finished.
+
+---
+
 **Sort all books in a small personal library**
 
 I'm building this app to solve my book organization problem. I own a few hundred books, and sorting them manually is a hassle—but it's not a big enough library to warrant a professional library database solution.
